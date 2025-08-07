@@ -188,8 +188,8 @@ const Gamemodes = () => {
             </h3>
             
             <p className="text-gray-600 max-w-2xl mx-auto mb-6 leading-relaxed">
-              Our team is actively building these exciting gamemodes! While they're not ready to play yet, 
-              you can preview what's coming and follow our development progress.
+              Our team is actively building these exciting gamemodes! While they&apos;re not ready to play yet, 
+              you can preview what&apos;s coming and follow our development progress.
             </p>
 
             {/* Development Stats */}

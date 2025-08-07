@@ -217,7 +217,7 @@ const Roadmap = () => {
           </h2>
           
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Follow BONK's evolution from community experiment to autonomous AI ecosystem. 
+            Follow BONK&apos;s evolution from community experiment to autonomous AI ecosystem. 
             Each milestone brings us closer to the decentralized future.
           </p>
         </motion.div>
@@ -409,7 +409,7 @@ const Roadmap = () => {
               The Journey Continues <span className="text-4xl">🐕</span>
             </h3>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
-              This roadmap is community-driven and evolves with every BONK holder's voice. 
+              This roadmap is community-driven and evolves with every BONK holder&apos;s voice. 
               Join us in shaping the future of decentralized AI!
             </p>
             

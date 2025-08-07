@@ -249,7 +249,7 @@ const Governance = () => {
           </h2>
           
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            BonkWare's governance combines the efficiency of off-chain discussion with the security 
+            BonkWare&apos;s governance combines the efficiency of off-chain discussion with the security 
             of on-chain execution. Every step is transparent, democratic, and community-driven.
           </p>
         </motion.div>
