@@ -2,44 +2,45 @@
 
 import { motion } from 'framer-motion'
 import { Users, Eye, Gamepad, Zap, ArrowRight, CheckCircle } from 'lucide-react'
+import Image from 'next/image'
 
 const Introduction = () => {
   const features = [
     {
-      icon: Users,
-      title: 'Community-First Development',
-      description: 'Token holders directly influence platform evolution through our governance system.',
-      highlights: ['Direct voting rights', 'Proposal submissions', 'Feature prioritization'],
+      icon: Zap,
+      title: 'Autonomous Build Loop',
+      description: 'AI proposes; humans approve. Features go from community ideas to shipped code automatically.',
+      highlights: ['AI drafts specs & PRs', 'Automated testing & CI', 'Human approval required'],
       color: 'from-bonk-500 to-sunset-600'
     },
     {
       icon: Eye,
-      title: 'Transparent Governance',
-      description: 'On-chain voting through Council of Architects NFT holders ensures transparency.',
-      highlights: ['On-chain verification', 'Public voting records', 'Democratic consensus'],
+      title: 'Verifiable by Design',
+      description: 'Transparent operations, program IDs, timelock queue. Every action is public and auditable.',
+      highlights: ['Transparent operations', 'Public deployment logs', 'On-chain verification'],
       color: 'from-sunset-500 to-bonk-600'
     },
     {
-      icon: Gamepad,
-      title: 'Gamified Experience',
-      description: 'Engaging mini-games and narrative elements make participation fun.',
-      highlights: ['4 Game modes', 'Seasonal events', 'NFT rewards'],
+      icon: Users,
+      title: 'Safety Over Speed',
+      description: 'Multisig control with public change windows. No instant deployments without oversight.',
+      highlights: ['Multisig approval required', '48-hour timelock', 'Public review period'],
       color: 'from-bonk-400 to-sunset-500'
     },
     {
-      icon: Zap,
-      title: 'Autonomous Execution',
-      description: 'AI-driven implementation of approved community proposals.',
-      highlights: ['Claude Sonnet AI', 'Automated deployment', 'Quality assurance'],
+      icon: Gamepad,
+      title: 'Community Flywheel',
+      description: 'Fair games fund bounties, prizes, and new features. Play to build the future.',
+      highlights: ['Provably fair games', 'Community rewards', 'Development funding'],
       color: 'from-sunset-600 to-bonk-700'
     }
   ]
 
-  const targetAudience = [
-    'Crypto enthusiasts seeking governance participation',
-    'Gamers looking for rewarding experiences',
-    'Developers interested in community-driven projects',
-    'Innovation advocates supporting decentralized systems'
+  const gameFunding = [
+    'Day-one mini-games with provably fair mechanics',
+    'Small, capped rake directed to community rewards',
+    'VRF-based randomness for transparent outcomes',
+    'Funding for ongoing operations and new features'
   ]
 
   return (
@@ -53,48 +54,35 @@ const Introduction = () => {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
-            className="inline-flex items-center space-x-2 bg-gradient-to-r from-bonk-100 to-sunset-100 rounded-full px-4 py-2 mb-6"
-          >
-            <span className="w-2 h-2 bg-gradient-bonk rounded-full animate-pulse" />
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-bonk-100 to-sunset-100 rounded-full px-4 py-2 mb-6">
+            <Image
+              src="/BonkWarePFP.jpeg"
+              alt="BonkWare"
+              width={20}
+              height={20}
+              className="rounded-full"
+            />
             <span className="text-sm font-medium text-bonk-700">Platform Introduction</span>
-          </motion.div>
+          </div>
           
           <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Revolutionizing <span className="bg-gradient-to-r from-bonk-600 to-sunset-600 bg-clip-text text-transparent">Community Governance</span>
+            Autonomous <span className="bg-gradient-to-r from-bonk-600 to-sunset-600 bg-clip-text text-transparent">Build Loop</span>
           </h2>
           
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            BonkWare represents the next evolution in decentralized platforms, 
-            where every community member has the power to shape the future.
+          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            BonkWare is a community-governed AI agent that turns approved suggestions into real product: it drafts specs, writes code, and runs tests before proposing deployments. Every change is guarded by multisig and a 48-hour timelock, with full transparency into how features ship and how funds move.
           </p>
-        </motion.div>
+        </div>
 
         {/* Features Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
           {features.map((feature, index) => (
-            <motion.div
+            <div
               key={feature.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2, duration: 0.6 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.02, y: -5 }}
-              className="group relative"
+              className="group relative hover:scale-105 transition-transform duration-200"
             >
-              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-300">
-                {/* Gradient Overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-300`} />
+              <div className="bg-white/80 rounded-2xl p-8 shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-200">
                 
                 <div className="relative">
                   {/* Icon */}
@@ -126,62 +114,51 @@ const Introduction = () => {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Target Audience */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="bg-gradient-to-r from-bonk-50 to-sunset-50 rounded-3xl p-8 lg:p-12 border border-bonk-100"
-        >
+        <div className="bg-gradient-to-r from-bonk-50 to-sunset-50 rounded-3xl p-8 lg:p-12 border border-bonk-100">
           <div className="text-center mb-8">
             <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
-              Built for <span className="bg-gradient-to-r from-bonk-600 to-sunset-600 bg-clip-text text-transparent">Everyone</span>
+              How BonkWare <span className="bg-gradient-to-r from-bonk-600 to-sunset-600 bg-clip-text text-transparent">Works</span>
             </h3>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Our platform welcomes diverse participants, each bringing unique value to the ecosystem.
+            <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              BonkWare is a community-governed, autonomous product loop. The AI reads from an approved queue, generates specs and code, runs tests in a sandbox, and prepares deployments. Nothing ships instantly: upgrades, liquidity moves, and admin actions require multisig approval and a 48-hour timelock, with all activity visible on-chain. We keep programs verified, reports public, and the community in full control of the agent&apos;s actions.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {targetAudience.map((audience, index) => (
-              <motion.div
+            {gameFunding.map((item, index) => (
+              <div
                 key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                viewport={{ once: true }}
-                className="flex items-center space-x-4 bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300"
+                className="flex items-center space-x-4 bg-white/80 rounded-xl p-6 shadow-md"
               >
                 <div className="w-3 h-3 bg-gradient-bonk rounded-full flex-shrink-0" />
-                <p className="text-gray-700 font-medium">{audience}</p>
-              </motion.div>
+                <p className="text-gray-700 font-medium">{item}</p>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
+        <div className="text-center mt-16">
           <div className="inline-flex items-center space-x-4">
             <button className="btn-primary group">
-              <span>Join the Revolution</span>
+              <span>Ship Faster Than Chat</span>
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
             </button>
-            <button className="btn-secondary">
-              Learn More
-            </button>
+            <a 
+              href="https://x.com/BonkWareAI" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="btn-secondary"
+            >
+              Follow Updates
+            </a>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

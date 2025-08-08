@@ -2,6 +2,7 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
+import Image from 'next/image'
 import { 
   CheckCircle, 
   Clock, 
@@ -34,7 +35,7 @@ interface RoadmapPhase {
 const Roadmap = () => {
   const [activePhase, setActivePhase] = useState<string | null>(null)
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const isInView = useInView(ref, { once: true, margin: "-50px", amount: 0.1 })
 
   const phases: RoadmapPhase[] = [
     {
@@ -163,34 +164,10 @@ const Roadmap = () => {
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-orange-50/50 to-amber-100/30" />
         
-        {/* Animated Grid */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="h-full w-full" style={{
-            backgroundImage: `
-              linear-gradient(rgba(255, 107, 53, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255, 107, 53, 0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: '50px 50px',
-          }} />
-        </div>
 
-        {/* Floating Orbs */}
-        <motion.div
-          animate={{
-            x: [0, 100, 0],
-            y: [0, -50, 0],
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-r from-bonk-300/20 to-sunset-300/20 rounded-full blur-2xl"
-        />
-        <motion.div
-          animate={{
-            x: [0, -80, 0],
-            y: [0, 30, 0],
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear", delay: 5 }}
-          className="absolute bottom-20 right-20 w-24 h-24 bg-gradient-to-r from-sunset-400/30 to-bonk-400/30 rounded-full blur-xl"
-        />
+        {/* Static Background Shapes */}
+        <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-r from-bonk-300/10 to-sunset-300/10 rounded-full blur-xl" />
+        <div className="absolute bottom-20 right-20 w-24 h-24 bg-gradient-to-r from-sunset-400/15 to-bonk-400/15 rounded-full blur-lg" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -207,9 +184,14 @@ const Roadmap = () => {
             transition={{ delay: 0.2 }}
             className="inline-flex items-center space-x-2 bg-gradient-to-r from-bonk-100 to-sunset-100 rounded-full px-6 py-3 mb-6"
           >
-            <Rocket className="w-5 h-5 text-bonk-600" />
+            <Image
+              src="/BonkWarePFP.jpeg"
+              alt="BonkWare"
+              width={20}
+              height={20}
+              className="rounded-full"
+            />
             <span className="text-base font-medium text-bonk-700">Mission Timeline</span>
-            <span className="text-xl">🚀</span>
           </motion.div>
           
           <h2 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
@@ -225,63 +207,48 @@ const Roadmap = () => {
         {/* Timeline */}
         <div className="relative">
           {/* Central Timeline Line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-bonk-200 via-sunset-300 to-bonk-400 transform -translate-x-1/2 hidden lg:block">
-            <motion.div
-              initial={{ height: 0 }}
-              animate={isInView ? { height: '100%' } : {}}
-              transition={{ duration: 2, ease: "easeInOut" }}
-              className="w-full bg-gradient-to-b from-bonk-500 to-sunset-500 origin-top"
-            />
-          </div>
+          <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-bonk-500 to-sunset-500 transform -translate-x-1/2 hidden lg:block" />
 
           {/* Phase Cards */}
           <div className="space-y-12 lg:space-y-24">
             {phases.map((phase, index) => (
               <motion.div
                 key={phase.id}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: index * 0.3, duration: 0.8 }}
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : {}}
+                transition={{ duration: 0.3 }}
                 className={`relative lg:flex lg:items-center ${
                   index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
                 }`}
               >
                 {/* Timeline Node */}
                 <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-1/2 hidden lg:block z-10">
-                  <motion.div
-                    whileHover={{ scale: 1.2 }}
-                    className="relative"
-                  >
-                    <div className={`w-16 h-16 rounded-full bg-gradient-to-r ${phase.color} p-1 shadow-2xl`}>
+                  <div className="relative">
+                    <div className={`w-16 h-16 rounded-full bg-gradient-to-r ${phase.color} p-1 shadow-lg`}>
                       <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
                         <phase.icon className="w-7 h-7 text-gray-700" />
                       </div>
                     </div>
                     
-                    {/* Cute BONK */}
-                    <motion.div
-                      animate={{ rotate: [0, 10, -10, 0] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                      className="absolute -top-2 -right-2 text-2xl"
-                    >
+                    {/* Static BONK */}
+                    <div className="absolute -top-2 -right-2 text-2xl">
                       {getBonkMood(phase.status)}
-                    </motion.div>
+                    </div>
                     
-                    {/* Pulse Animation for Current */}
+                    {/* Simple pulse for current only */}
                     {phase.status === 'current' && (
-                      <div className="absolute inset-0 rounded-full bg-bonk-400/30 animate-ping" />
+                      <div className="absolute inset-0 rounded-full bg-bonk-400/20 animate-pulse" />
                     )}
-                  </motion.div>
+                  </div>
                 </div>
 
                 {/* Content Card */}
-                <motion.div
-                  onHoverStart={() => setActivePhase(phase.id)}
-                  onHoverEnd={() => setActivePhase(null)}
-                  whileHover={{ scale: 1.02, y: -5 }}
+                <div
+                  onMouseEnter={() => setActivePhase(phase.id)}
+                  onMouseLeave={() => setActivePhase(null)}
                   className={`lg:w-2/5 ${index % 2 === 0 ? 'lg:pr-16' : 'lg:pl-16'}`}
                 >
-                  <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-500">
+                  <div className="bg-white/90 rounded-2xl p-8 shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
                     {/* Mobile Timeline Node */}
                     <div className="flex items-center space-x-4 lg:hidden mb-6">
                       <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${phase.color} p-1`}>
@@ -327,11 +294,9 @@ const Roadmap = () => {
                           <span className="text-sm font-bold text-bonk-600">{phase.progress}%</span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-2">
-                          <motion.div
-                            initial={{ width: 0 }}
-                            animate={isInView ? { width: `${phase.progress}%` } : {}}
-                            transition={{ delay: index * 0.3 + 0.5, duration: 1 }}
-                            className="bg-gradient-to-r from-bonk-500 to-sunset-500 h-2 rounded-full"
+                          <div
+                            className="bg-gradient-to-r from-bonk-500 to-sunset-500 h-2 rounded-full transition-all duration-1000"
+                            style={{ width: isInView ? `${phase.progress}%` : '0%' }}
                           />
                         </div>
                       </div>
@@ -345,11 +310,8 @@ const Roadmap = () => {
                     {/* Features */}
                     <div className="space-y-3">
                       {phase.features.map((feature, featureIndex) => (
-                        <motion.div
+                        <div
                           key={featureIndex}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={isInView ? { opacity: 1, x: 0 } : {}}
-                          transition={{ delay: index * 0.3 + featureIndex * 0.1 }}
                           className="flex items-center space-x-3"
                         >
                           {phase.status === 'completed' ? (
@@ -358,7 +320,7 @@ const Roadmap = () => {
                             <div className="w-2 h-2 bg-bonk-400 rounded-full flex-shrink-0" />
                           )}
                           <span className="text-gray-700 font-medium">{feature}</span>
-                        </motion.div>
+                        </div>
                       ))}
                     </div>
 
@@ -387,7 +349,7 @@ const Roadmap = () => {
                       </div>
                     </motion.div>
                   </div>
-                </motion.div>
+                </div>
 
                 {/* Spacer for alternating layout */}
                 <div className="hidden lg:block lg:w-2/5" />
@@ -413,14 +375,15 @@ const Roadmap = () => {
               Join us in shaping the future of decentralized AI!
             </p>
             
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="btn-primary inline-flex items-center space-x-2"
+            <a
+              href="https://x.com/BonkWareAI"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary inline-flex items-center space-x-2 hover:scale-105 transition-transform duration-200"
             >
               <span>Join the Mission</span>
               <ArrowRight className="w-5 h-5" />
-            </motion.button>
+            </a>
           </div>
         </motion.div>
       </div>

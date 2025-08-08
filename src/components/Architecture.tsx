@@ -23,7 +23,7 @@ import {
 const Architecture = () => {
   const [activeNode, setActiveNode] = useState<string | null>(null)
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const isInView = useInView(ref, { once: true, margin: "-50px", amount: 0.1 })
 
   const architectureNodes = [
     {
@@ -49,15 +49,15 @@ const Architecture = () => {
       features: ['24/7 operation', 'Claude Sonnet powered', 'Auto-deployments', 'Upgradeable to Opus']
     },
     {
-      id: 'codebase',
-      title: 'Open Source Codebase',
-      subtitle: 'GitHub Repository',
-      description: 'Entire codebase—AI pipelines, infra scripts, deployment manifests—is public. Encourages contributions, audits, and full transparency.',
+      id: 'transparency',
+      title: 'Transparent Operations',
+      subtitle: 'Community Oversight',
+      description: 'While the agent is closed, all operations are transparent. Deployment logs, decision rationale, and fund movements are publicly visible.',
       icon: Github,
       bonkEmoji: '📚',
       color: 'from-purple-400 to-pink-500',
       position: { x: 85, y: 30 },
-      features: ['Fully open source', 'Public audits', 'Community contributions', 'Zero closed doors']
+      features: ['Public operation logs', 'Transparent decisions', 'Community oversight', 'Verified deployments']
     }
   ]
 
@@ -72,13 +72,13 @@ const Architecture = () => {
       benefits: ['24/7 operation', 'Self-managing', 'Scalable AI', 'Future-proof']
     },
     {
-      id: 'opensource',
-      title: 'Fully Open Source',
-      description: 'Complete transparency with public codebase, AI pipelines, and infrastructure. Community-driven development with full audit capabilities.',
+      id: 'transparency',
+      title: 'Community Transparency',
+      description: 'While the agent remains closed, all operations are fully transparent. Public logs, decision tracking, and community governance ensure accountability.',
       icon: Github,
       bonkEmoji: '🌐',
       color: 'from-purple-500 to-indigo-600',
-      benefits: ['Full transparency', 'Community audits', 'Open contributions', 'Trust through visibility']
+      benefits: ['Public operation logs', 'Community oversight', 'Transparent decisions', 'Governance control']
     },
     {
       id: 'governance',
