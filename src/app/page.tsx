@@ -2,6 +2,7 @@ import Navigation from '@/components/Navigation'
 import Hero from '@/components/Hero'
 import Introduction from '@/components/Introduction'
 import Architecture from '@/components/Architecture'
+import AIBackrooms from '@/components/AIBackrooms'
 import Gamemodes from '@/components/Gamemodes'
 import Governance from '@/components/Governance'
 import Roadmap from '@/components/Roadmap'
@@ -14,6 +15,7 @@ export default function Home() {
         <Hero />
         <Introduction />
         <Architecture />
+        <AIBackrooms />
         <Gamemodes />
         <Governance />
         <Roadmap />

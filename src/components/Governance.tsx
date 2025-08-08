@@ -2,6 +2,7 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import Image from 'next/image'
 import { 
   Lock,
   MessageSquare,
@@ -37,7 +38,7 @@ interface GovernanceStep {
 
 const Governance = () => {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const isInView = useInView(ref, { once: true, margin: "-50px", amount: 0.1 })
 
   const governanceSteps: GovernanceStep[] = [
     {
@@ -239,9 +240,14 @@ const Governance = () => {
             transition={{ delay: 0.2 }}
             className="inline-flex items-center space-x-2 bg-gradient-to-r from-bonk-100 to-sunset-100 rounded-full px-6 py-3 mb-6"
           >
-            <Users className="w-5 h-5 text-bonk-600" />
+            <Image
+              src="/BonkWarePFP.jpeg"
+              alt="BonkWare"
+              width={20}
+              height={20}
+              className="rounded-full"
+            />
             <span className="text-base font-medium text-bonk-700">Democratic Governance</span>
-            <span className="text-xl">🏛️</span>
           </motion.div>
           
           <h2 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
@@ -268,7 +274,7 @@ const Governance = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.6 + index * 0.1 }}
-                className="bg-white/60 backdrop-blur-sm rounded-xl p-6 border border-bonk-100 text-center"
+                className="bg-white/90 rounded-xl p-6 border border-bonk-100 text-center"
               >
                 <div className="flex items-center justify-between mb-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-bonk-400 to-sunset-500 rounded-lg flex items-center justify-center">
@@ -295,18 +301,15 @@ const Governance = () => {
 
           <div className="space-y-8">
             {governanceSteps.map((step, index) => (
-              <motion.div
+              <div
                 key={step.id}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.8 + index * 0.1, duration: 0.6 }}
                 className={`flex flex-col lg:flex-row items-center gap-8 ${
                   index % 2 === 1 ? 'lg:flex-row-reverse' : ''
                 }`}
               >
                 {/* Step Card */}
                 <div className="flex-1 max-w-2xl">
-                  <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/50">
+                  <div className="bg-white/90 rounded-2xl p-8 shadow-lg border border-gray-200">
                     {/* Header */}
                     <div className="flex items-start justify-between mb-6">
                       <div className="flex items-center space-x-4">
@@ -368,7 +371,7 @@ const Governance = () => {
                     </div>
                   </div>
                 )}
-              </motion.div>
+              </div>
             ))}
           </div>
         </motion.div>
@@ -406,14 +409,15 @@ const Governance = () => {
                 </div>
               </div>
 
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="btn-primary mt-8 inline-flex items-center space-x-2"
+              <a
+                href="https://x.com/BonkWareAI"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary mt-8 inline-flex items-center space-x-2 hover:scale-105 transition-transform duration-200"
               >
-                <span>Access Dashboard</span>
+                <span>Follow Development</span>
                 <ArrowRight className="w-5 h-5" />
-              </motion.button>
+              </a>
             </div>
           </div>
         </motion.div>

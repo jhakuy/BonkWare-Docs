@@ -64,6 +64,25 @@ body {
   font-feature-settings: 'rlig' 1, 'calt' 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Performance optimizations */
+  will-change: auto;
+}
+
+/* Performance optimizations */
+.optimized-animations {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Custom scrollbar */
@@ -105,11 +124,11 @@ body {
   }
   
   .bg-glass {
-    @apply bg-white/10 backdrop-blur-md border border-white/20;
+    @apply bg-white/20 border border-white/30;
   }
   
   .bg-glass-dark {
-    @apply bg-black/10 backdrop-blur-md border border-white/10;
+    @apply bg-black/20 border border-white/20;
   }
   
   .shadow-glow {
@@ -151,24 +170,9 @@ body {
   }
 }
 
-/* Enhanced animations */
+/* Simplified animations */
 .animate-float {
   animation: float 6s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
-@keyframes pulse-glow {
-  0%, 100% {
-    opacity: 1;
-    box-shadow: 0 0 20px rgba(255, 107, 53, 0.4);
-  }
-  50% {
-    opacity: 0.8;
-    box-shadow: 0 0 40px rgba(255, 69, 0, 0.6);
-  }
 }
 
 /* Mesh gradient background */

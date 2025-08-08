@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { ArrowDown, Sparkles, Zap, Users, Gamepad2 } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 
 const Hero = () => {
   const [mounted, setMounted] = useState(false)
@@ -32,15 +33,6 @@ const Hero = () => {
     }
   ]
 
-  // Fixed positions to avoid hydration mismatch
-  const floatingElements = [
-    { left: '15%', top: '20%', delay: 0.5, duration: 4 },
-    { left: '85%', top: '15%', delay: 1.2, duration: 3.5 },
-    { left: '25%', top: '80%', delay: 2.1, duration: 4.5 },
-    { left: '75%', top: '70%', delay: 0.8, duration: 3.8 },
-    { left: '45%', top: '25%', delay: 1.8, duration: 4.2 },
-    { left: '65%', top: '85%', delay: 2.5, duration: 3.2 },
-  ]
 
   if (!mounted) {
     return (
@@ -74,29 +66,13 @@ const Hero = () => {
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50" />
         <div className="absolute inset-0 bg-gradient-to-t from-bonk-100/30 via-transparent to-transparent" />
-        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-r from-bonk-300/30 to-sunset-300/30 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-r from-sunset-400/30 to-bonk-400/30 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-gradient-to-r from-amber-300/20 to-orange-300/20 rounded-full blur-2xl animate-pulse-slow" style={{ animationDelay: '2s' }} />
-        {floatingElements.map((element, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-gradient-bonk rounded-full opacity-60"
-            style={{
-              left: element.left,
-              top: element.top,
-            }}
-            animate={{
-              y: [0, -20, 0],
-              opacity: [0.3, 0.8, 0.3],
-              scale: [1, 1.2, 1],
-            }}
-            transition={{
-              duration: element.duration,
-              repeat: Infinity,
-              delay: element.delay,
-            }}
-          />
-        ))}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-r from-bonk-300/20 to-sunset-300/20 rounded-full blur-2xl" />
+        <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-r from-sunset-400/20 to-bonk-400/20 rounded-full blur-2xl" />
+        <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-gradient-to-r from-amber-300/15 to-orange-300/15 rounded-full blur-xl" />
+        {/* Static floating dots */}
+        <div className="absolute w-2 h-2 bg-bonk-400/40 rounded-full" style={{ left: '15%', top: '20%' }} />
+        <div className="absolute w-2 h-2 bg-sunset-400/40 rounded-full" style={{ left: '85%', top: '15%' }} />
+        <div className="absolute w-2 h-2 bg-bonk-500/40 rounded-full" style={{ left: '75%', top: '70%' }} />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -116,7 +92,7 @@ const Hero = () => {
           >
             <Zap className="w-5 h-5 text-bonk-600" />
             <span className="text-base font-medium text-bonk-700">
-              Community-Driven AI Evolution Platform
+              Ideas in. Product out. All on-chain.
             </span>
             <div className="w-2 h-2 bg-gradient-bonk rounded-full animate-pulse" />
           </motion.div>
@@ -142,8 +118,7 @@ const Hero = () => {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed"
           >
-            Where governance meets gaming, and community drives innovation. 
-            Join the revolution of decentralized AI development on Solana.
+            BonkWare&apos;s mission is to turn community-approved ideas into shipped code—safely and on-chain—by pairing an autonomous AI agent with community-controlled governance.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -157,48 +132,56 @@ const Hero = () => {
               <span>Explore Platform</span>
               <ArrowDown className="w-5 h-5 ml-2 group-hover:animate-bounce" />
             </button>
-            <button className="btn-secondary">
-              Join Community
-            </button>
+            <a 
+              href="https://x.com/BonkWareAI" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="btn-secondary"
+            >
+              Follow on X
+            </a>
           </motion.div>
         </motion.div>
 
         {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.8 }}
-          className="mt-20 mb-16 grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12"
-        >
+        <div className="mt-20 mb-16 grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
           {stats.map((stat, index) => (
-            <motion.div
+            <div
               key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.1 + index * 0.2 }}
-              whileHover={{ scale: 1.05 }}
-              className="group relative"
+              className="group relative hover:scale-105 transition-transform duration-200"
             >
-              <div className="bg-white/70 backdrop-blur-sm border border-bonk-200/50 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:bg-white/80 hover:shadow-bonk-200/20">
-                <div className="absolute inset-0 bg-gradient-to-br from-bonk-500/5 to-sunset-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="relative">
-                  <div className="flex items-center justify-center w-12 h-12 bg-gradient-bonk rounded-xl mb-4 mx-auto shadow-lg shadow-bonk-200">
-                    <stat.icon className="w-6 h-6 text-white" />
-                  </div>
+              <div className="bg-white/80 border border-bonk-200/50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-200">
+                <div className="flex items-center justify-center w-12 h-12 bg-gradient-bonk rounded-xl mb-4 mx-auto shadow-md">
+                  <stat.icon className="w-6 h-6 text-white" />
+                </div>
                   <div className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-bonk-600 to-sunset-600 bg-clip-text text-transparent mb-2">
                     {stat.number}
                   </div>
-                  <div className="text-lg font-semibold text-gray-800 mb-1">
-                    {stat.label}
-                  </div>
-                  <div className="text-sm text-gray-600">
-                    {stat.description}
-                  </div>
+                <div className="text-lg font-semibold text-gray-800 mb-1">
+                  {stat.label}
+                </div>
+                <div className="text-sm text-gray-600">
+                  {stat.description}
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
+
+        {/* BonkWare Banner */}
+        <div className="mt-16 flex justify-center">
+          <div className="relative max-w-2xl w-full">
+            <Image
+              src="/BonkWareBanner.jpeg"
+              alt="BonkWare - Ideas in. Product out. All on-chain."
+              width={800}
+              height={200}
+              className="rounded-2xl shadow-2xl hover:shadow-bonk-200/30 transition-shadow duration-300"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-2xl" />
+          </div>
+        </div>
 
       </div>
     </section>

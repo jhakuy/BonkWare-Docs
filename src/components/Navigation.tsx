@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Github, MessageCircle, ExternalLink } from 'lucide-react'
+import { Menu, X, ExternalLink, Twitter } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -20,14 +21,14 @@ const Navigation = () => {
   const navItems = [
     { href: '#introduction', label: 'Introduction' },
     { href: '#architecture', label: 'Architecture' },
+    { href: '#ai-backrooms', label: 'AI Backrooms' },
     { href: '#gamemodes', label: 'Gamemodes' },
     { href: '#governance', label: 'Governance' },
     { href: '#roadmap', label: 'Roadmap' },
   ]
 
   const socialLinks = [
-    { href: '#', icon: Github, label: 'GitHub' },
-    { href: '#', icon: MessageCircle, label: 'Discord' },
+    { href: 'https://x.com/BonkWareAI', icon: Twitter, label: 'Twitter/X' },
   ]
 
   return (
@@ -36,7 +37,7 @@ const Navigation = () => {
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/80 backdrop-blur-xl border-b border-white/20 shadow-lg'
+          ? 'bg-white/90 border-b border-gray-200 shadow-lg'
           : 'bg-transparent'
       }`}
     >
@@ -50,9 +51,13 @@ const Navigation = () => {
             className="flex items-center space-x-2"
           >
             <div className="relative">
-              <div className="w-8 h-8 bg-gradient-bonk rounded-lg flex items-center justify-center shadow-lg shadow-bonk-300/50">
-                <span className="text-white font-bold text-sm">🐕</span>
-              </div>
+              <Image
+                src="/BonkWarePFP.jpeg"
+                alt="BonkWare Logo"
+                width={32}
+                height={32}
+                className="rounded-lg shadow-lg"
+              />
               <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-sunset-400 to-bonk-500 rounded-full animate-pulse" />
             </div>
             <div>
